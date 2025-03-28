@@ -1,0 +1,133 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* --- END OF RESET --- */
+
+/* --- START OF STYLING --- */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ebebeb;
+    text-align: center;
+
+}
+
+main {
+    display: block;
+    margin: 0 auto;
+    padding: 0 2em 2em;
+    max-width: 800px;
+}
+
+div {
+    border: solid #000 2px;
+    border-radius: 10px; /*set independently*/
+    padding: 1.5em;
+    margin-top: 2em;
+}
+
+.survey {
+    background-color: #000;
+}
+
+footer {
+    padding: 2em;
+}
+
+
+/* --- TYPOGRAPHY --- */
+
+header p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+h1 {
+    margin: 70px 0;
+}
+
+h1 span {
+    display: block;
+    padding: 0.1em 0;
+    font-family: 'Bebas Neue', Inter, Sans Serif;
+    font-size: 6em;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding-bottom: 1em;;
+}
+
+a {
+    display: inline-block;
+    color: #fff;
+    margin-top: 20px;
+    padding: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #db3232;
+    border-radius: 10px;
+}
+
+.survey h2 {
+    color: #fff;
+}
+
+/* --- IMAGES ---*/
+
+img {
+    display: block;
+    margin: 4em auto 0;
+    width: 200px;
+    height: auto;
+}
