@@ -1,0 +1,456 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* --- END OF RESET --- */
+
+/* --- STYLING STARTS HERE --- */
+
+:root {
+    --charcoal: #252525;
+    --washed-grey: #EBEBEB;
+    --chilli-red: #D62D2A;
+    --slang: #EE3B70;
+    --rhyme: #FAA330;
+}
+
+/* --- TYPOGRAPHY --- */
+body {
+    font-family: 'Poppins';
+}
+
+h1, h2, .lyrics, summary {
+    font-family: 'Bebas Neue';
+}
+
+h1, h2, summary {
+    text-align: center;
+}
+
+h1 {
+    font-size: 6em;
+}
+
+h2 {
+    font-size: 8em;
+    padding: 0.2em;
+    color: var(--chilli-red);
+}
+
+h3 {
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 0.6em;
+}
+
+p {
+    text-wrap: pretty;
+}
+    
+.origin, cite {
+    font-style: italic;
+}
+
+.lyrics {
+    font-size: 3em;
+}
+
+.song-details, .lyrics {
+    color: var(--washed-grey);
+}
+
+.song-details {
+    margin: 2em 0;
+    text-align: center;
+}
+
+.slang {
+    background-color: var(--slang);
+}
+
+.rhyme {
+    background-color: var(--rhyme);
+}
+
+.lyric-word {
+    all: unset;
+    position: relative;
+    cursor: pointer;
+}
+
+.slang-text {
+    color: var(--slang);
+}
+
+.rhyme-text {
+    color: var(--rhyme);
+}
+
+p span {
+    padding: 0 0.1em;
+}
+
+/* --- LAYOUT --- */
+
+body {
+    box-sizing: border-box;
+    min-height: 100vh;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+header, main {
+    margin-top: 3em;
+}
+
+article {
+    margin-top: 2em;
+    border: 5px solid var(--chilli-red);
+    border-radius: 15px;
+    background-color: var(--charcoal);
+}
+
+.entry-data, .example {
+    margin: 1.5em 0;
+}
+
+cite {
+    display: block;
+    margin-top: 0.6em;
+    font-size: 0.8rem;
+}
+
+.snippet {
+    margin: 10em auto 0;
+    padding: 3em;
+    background-color: var(--charcoal);
+    border-radius: 25px;
+}
+
+.techniques {
+    display: flex;
+    font-weight: 500;
+}
+
+.techniques p{
+    margin-right: 0.5em;
+    padding: 0.5em 1.5em;
+    border-radius: 10px;
+}
+
+.info-container {
+    display: none;
+    position: absolute;
+    font-size: 0.5em;
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 3px solid var(--washed-grey);
+    top: -3em;
+    left: 100%;
+    background-color: var(--charcoal);
+    color: var(--washed-grey);
+}
+
+.filter-container {
+    display: inline;
+}
+/* --- NAVIGATION --- */
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+nav ul, nav img {
+    display: inline-block;
+}
+
+nav li {
+    display: inline-block;
+}
+
+.see-also li {
+    display: inline-block;
+    font-size: 0.8em;
+    background-color: var(--washed-grey);
+    border-radius: 10px;
+    border: 2px solid var(--chilli-red);
+    padding: 0.5em 0.7em;
+    margin-right: 0.5em;
+}
+.see-also a {
+    color: var(--charcoal);
+    text-decoration: none;
+}
+
+/* --- TOGGLE --- */
+
+input[type="checkbox"]#menu-toggle {
+	opacity: 0;
+	position: absolute;
+}
+label.toggle {
+	display: inline-block;
+	width: auto;
+	margin: 0;
+	position: relative;
+	padding-top: 10px;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	line-height: 1;
+	color: #51b5cc;
+}
+nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible {
+	cursor: pointer;
+}
+
+/* visual focus */
+nav .toggle::before {
+	content: "";
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+input[type="checkbox"]#menu-toggle:focus-visible + label.toggle::before {
+	border-top: 1px solid var(--rhyme);
+	border-bottom: 1px solid var(--rhyme);
+	outline: none;
+}
+
+/* show/hide menu */
+input[type="checkbox"]#menu-toggle + label.toggle + ul {
+	display: none;
+}
+input[type="checkbox"]#menu-toggle:checked + label.toggle + ul {
+	display: block;
+}
+
+/* 3 lined toggle vis  */
+label.toggle strong {
+	position: absolute;
+	display: block;
+	width: 80vw;
+	top: 12px;
+	left: calc(6vw + 42px);
+	color: var(--chilli-red);
+}
+label.toggle:hover strong {
+	color: var(--charcoal);
+}
+label.toggle [class*='line-'] {
+	background: var(--charcoal);
+	display: block;
+	border-radius: 3px;
+	height: 3px;
+	width: 26px;
+	margin: 0 0 6px 6vw;
+	transform: rotate(0deg);
+	transition: .2s ease all;
+}
+label.toggle:hover [class*='line-'] {
+	background: var(--chilli-red);
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-top {
+	transform: rotate(45deg);
+	transform-origin: 0 0;
+}
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-mid {
+	opacity: 0;
+}
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-bot {
+	transform: rotate(-45deg);
+	transform-origin: 0 90%;
+}
+
+/* --- POP UP --- */
+
+.info-box { 
+    display: none; /* users can not see the info box by default */
+    background-color: var(--washed-grey);
+    color: var(--charcoal);
+    z-index: 2;
+    width: 400px;
+    padding: 1em;
+    border-radius: 15px;
+    position: fixed;
+}
+
+.info-box.visible { 
+    display: block;
+}
+
+.word-popup {
+    background-color: var(--washed-grey);
+    color: var(--charcoal);
+    max-width: 400px;
+    padding: 1em;
+    z-index: 2;
+}
+
+/* --- DETAILS --- */
+
+summary {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+details, summary {
+    background-color: var(--washed-grey);
+    border-radius: 10px;
+}
+
+details { 
+    border-top: 5px solid var(--chilli-red);
+    padding: 1em;
+}
+
+summary::marker {
+    content: "+ Check out definition";
+}
+
+details[open] summary::marker {
+    content: "× Close";
+}
+
+details[open] summary {
+    background-color: var(--charcoal);
+}
+
+details[open] {
+    padding: 1em;
+    color: var(--washed-grey);
+    background-color: var(--charcoal);
+    border: none;
+}
+
+details p {
+    padding-bottom: 0.5em;
+}
+
+.origin {
+    font-style: italic;
+}
+
+.definition, blockquote {
+    font-size: 1.2em;
+}
+
+/* --- IMAGES --- */
+
+nav img {
+    width: 150px;
+    height: auto;
+}
+
+/* --- LINK STATES --- */
+
+button:hover {
+    cursor: pointer;
+}
+
+button:hover .info-container {
+    display: block;
+}
+
+
+/* --- MEDIA QUERIES --- */
+
+@media (min-width: 520px) {	
+/* show/hide menu */	
+	input[type="checkbox"]#menu-toggle + label.toggle + ul, input[type="checkbox"]#menu-toggle:checked + label.toggle + ul {
+		display: block;
+	}	
+	input[type="checkbox"]#menu-toggle + label.toggle, input[type="checkbox"]#menu-toggle:checked + label.toggle {
+		display: none;
+	}				
+}
+
+@media (min-width:760px) {
+    section {
+    margin-top: 2em;
+    }
+
+    article {
+        margin-top: 0;
+    }
+
+    section.glossary-list {
+        columns: 2;
+        column-gap: 2em;
+    }
+
+    article.entry {
+        break-inside: avoid; /* stops element from spreading across columns */
+        margin-bottom: 2em;
+    }
+}
+
+@media (min-width:960px) {
+    body {
+    max-width: 80vw;
+    } 
+
+    section.glossary-list {
+        columns: 2;
+    }
+    /* keep the details element open */
+  /* details {
+    all: unset;
+    display: block; 
+   }
+
+   details summary {
+    display: none;
+   } */
+}
