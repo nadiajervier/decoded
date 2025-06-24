@@ -1,0 +1,315 @@
+/* --- RESET STARTS HERE --- */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+summary::marker {
+    content: "";
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary {
+    cursor: pointer;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* --- END OF RESET --- */
+
+/* --- STYLING STARTS HERE --- */
+
+:root {
+    --charcoal: #252525;
+    --white-smoke: #F5F5F5;
+    --red-white: #C31313;
+    --red-black: #FF4634;
+    --slant-rhyme: #FFB92E;
+    --internal-rhyme: #4CFF3E;
+}
+
+/* --- PAGE STYLING --- */
+
+body {
+    font-family: 'Poppins', Avenir, Monserrat, Source Sans Pro, Sans Serif;
+    color: var(--charcoal);
+    background-color: var(--white-smoke);
+}
+
+main {
+    margin: 1rem 2rem;
+}
+
+/* --- TYPOGRAPHY --- */
+
+h1, h2, h3 {
+    font-family: 'Oswald', Sans Serif;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 1em 0;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.lesson-intro {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+/* --- HEADER --- */
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* --- NAVIGATION --- */
+
+nav[aria-label="lesson"] {
+    display: flex;
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+nav[aria-label="lesson"] li {
+    display: inline;
+}
+
+nav[aria-label="footer"] {
+    display: block;
+    margin: 0 auto;
+}
+
+nav[aria-label="footer"] li {
+    color: var(--white-smoke);
+    text-align: center;
+}
+
+/* - MAIN NAVIGATION TOGGLE - */
+
+input[type="checkbox"]#menu-toggle {
+	opacity: 0;
+	position: absolute;
+}
+
+label.toggle {
+	display: inline-block;
+	width: auto;
+	margin: 0;
+	position: relative;
+	padding-top: 10px;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	line-height: 1;
+}
+
+nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible {
+	cursor: pointer;
+}
+
+/* visual focus */
+
+nav .toggle::before {
+	content: "";
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+input[type="checkbox"]#menu-toggle:focus-visible + label.toggle::before {
+	border-top: 1px solid var(--charcoal);
+	border-bottom: 1px solid var(--charcoal);
+	outline: none;
+}
+
+/* show/hide menu */
+
+input[type="checkbox"]#menu-toggle + label.toggle + ul {
+	display: none;
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle + ul {
+	display: block;
+}
+
+/* 4 lines toggle visible */
+
+label.toggle [class*='line-'] {
+	background: var(--charcoal);
+	display: block;
+	border-radius: 2px;
+	height: 8px;
+	width: 44px;
+	margin: 0 0 3px 6vw;
+	transform: rotate(0deg);
+	transition: 0.4s ease all;
+}
+
+label.toggle:hover [class*='line-'] {
+	background: var(--red-black);
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-two {
+	transform: rotate(45deg);
+	transform-origin: 0 0;
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-one, input[type="checkbox"]#menu-toggle:checked + label.toggle .line-four {
+	opacity: 0;
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle .line-three {
+	transform: rotate(-45deg);
+	transform-origin: 0 90%;
+}
+
+/* --- DETAILS ELEMENT & PAGE CONTENT --- */
+
+summary {
+    display: inline-block;
+    margin: 0.8rem 0;
+    padding: 0.8rem;
+    color: var(--white-smoke);
+    background-color: var(--charcoal);
+    border-radius: 6px;
+}
+
+details[open] summary {
+    background-color: var(--red-white);
+}
+
+.related-techniques li {
+    display: inline-block;
+    margin: 0.5rem 1rem 0.5rem 0;
+    padding: 0.5rem;
+    border: solid var(--charcoal) 2px;
+    border-radius: 5px;
+}
+
+.slant {
+    background-color: var(--slant-rhyme)
+}
+
+/* --- FOOTER --- */
+
+footer {
+    background-color: var(--charcoal);
+    padding: 3rem 2rem 1rem;
+}
+
+footer img {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 4rem auto 1rem;
+}
+
+footer p {
+    color: var(--white-smoke);
+    text-align: center;
+}
+
+footer li {
+    margin-bottom: 1rem;
+}
+
+/* --- LINK STATES ---*/
+/* link, hover, focus-visible, active, visited */
+
+a {
+    color: var(--charcoal);
+    text-decoration: none;
+}
+
+summary:hover, summary:focus-visible, summary:active {
+    background-color: var(--red-white);
+    transition: background-color 0.2s ease-in-out;
+}
+
+summary:focus-visible {
+    outline: var(--charcoal) solid 3px;
+}
