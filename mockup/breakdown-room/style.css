@@ -105,6 +105,10 @@ header {
     padding: 2rem 2rem 4rem;
 }
 
+label + div {
+    margin: 2rem 0;
+}
+
 /* --- TYPOGRAPHY --- */
 
 h1, h2, h3 {
@@ -322,6 +326,17 @@ input[type="checkbox"].content-dropdown:checked + label.toggle + div {
 	display: block;
 }
 
+/* dropdown arrow */
+
+label span {
+    margin-left: 2rem;
+}
+
+label p:last-of-type {
+
+    margin-left: 2rem;
+}
+
 /* --- FOOTER --- */
 
 footer {
@@ -353,7 +368,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:hover, label:hover {
     cursor: pointer;
 }
 
