@@ -305,15 +305,24 @@ input[type="checkbox"].content-dropdown {
 
 input[type="checkbox"].content-dropdown + label {
     display: block;
+}
+
+input[type="checkbox"].content-dropdown + label {
+    margin-top: 0.8rem;
+    padding: 0.8rem 0;
+}
+
+input[type="checkbox"].content-dropdown + label p {
+    display: inline;
     max-width: fit-content;
-    margin: 0.8rem 0;
+    margin-bottom: 0.8rem;
     padding: 0.8rem;
     color: var(--white-smoke);
     background-color: var(--charcoal);
     border-radius: 6px;
 }
 
-input[type="checkbox"].content-dropdown:checked + label {
+input[type="checkbox"].content-dropdown:checked + label p {
     background-color: var(--red-white);
     box-shadow: -0.5rem 0.5rem var(--charcoal);
 }
@@ -333,8 +342,7 @@ label span {
 }
 
 label p:last-of-type {
-
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 /* --- FOOTER --- */
@@ -342,6 +350,7 @@ label p:last-of-type {
 footer {
     background-color: var(--charcoal);
     padding: 3rem 2rem 1rem;
+    margin-top: 3rem;
 }
 
 footer img {
@@ -386,7 +395,7 @@ nav[aria-label="footer"] a:hover, nav[aria-label="footer"] a:focus-visible, nav[
     text-decoration: underline;
 }
 
-input[type="checkbox"].content-dropdown:hover + label, input[type="checkbox"].content-dropdown:focus-visible + label, input[type="checkbox"].content-dropdown:active + label {
+input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p {
     background-color: var(--red-white);
     transition: all 0.4s ease-in-out;
     box-shadow: -0.5rem 0.5rem var(--charcoal);
