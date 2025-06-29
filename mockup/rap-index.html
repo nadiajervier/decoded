@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <title>Rap Index - Hip Hop word by word</title>
+    </head>
+
+    <body>
+        <header>
+            <a href="#"><img src="images/logo-black.svg" alt="Decoded logo" width="145" height="56" class="logo"></a>
+                <!-- hidden checkbox that controls menu -->
+            <input id="menu-toggle" type="checkbox">
+
+            <!-- label that toggles the nav -->
+            <label for="menu-toggle" class="toggle">
+                <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 49.817">
+                    <g id="content">
+                        <g>
+                        <rect x="4.145" y="39.01" width="45.228" height="10.806" rx="2.077" ry="2.077"/>
+                        <rect width="29.801" height="10.806" rx="1.686" ry="1.686"/>
+                        <rect x="10.894" y="13.003" width="39.106" height="10.806" rx="1.931" ry="1.931"/>
+                        <rect y="26.007" width="40.476" height="10.806" rx="1.965" ry="1.965"/>
+                        </g>
+                    </g>
+                </svg>
+                Menu
+            </label>
+
+            <nav aria-label="main">
+                    
+                <!-- nav content that will drop down -->
+                <ul>
+                    <li><a href="#">Lyric Anatomy</a></li>
+                    <li><a href="#">The Breakdown Room</a></li>
+                    <li><a href="#">Rap Index</a></li>
+                    <li><a href="#">Submit a lyric</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Rap Index</h1>
+
+            <!-- Intro -->
+            <input id="page-info" type="checkbox" class="content-dropdown subtitle">
+            <label for="page-info" class="toggle">
+                <p>What is the Rap Index?</p>
+                <p>&#x276F</p>
+            </label>
+            <div>
+                <p>Hip hop lyrics are rich with history, techniques and real intent - and it all starts with the words. Think of the Rap Index as your glossary and guidebook to hip-hop lyricism, the language and the craft behind the bars.</p>
+                <p>Dive in to explore the language, slang and structure that bring lyrics to life. </p>
+                <p class="italic">Your shortcut to understanding hip-hop - one term at a time!</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="glossary-filter">
+                <p>Filter</p>
+                <p>Sort</p>
+            </div>
+
+            <!-- Glossary Entries -->
+            <section class="glossary-entries">
+            
+                <article class="glossary-entry">
+                    <input id="dip" type="checkbox" class="content-dropdown glossary-entry">
+                    <label for="dip" class="toggle">Dip</label>
+                    <div>
+                        <p class="type">Slang</p>
+                        <p class="origin">USA</p>
+                        <p class="year">1990's</p>
+                        <p class="abbrv">Leave</p>
+                        <p class="definition">Leave, sometimes quickly or in reference to escaping</p>
+                        <h2>Example lyric</h2>
+                        <p class="lyric">&ldquo; Everybody got their passport ready to dip, uh &rdquo;</p>
+                        <p class="italic song-details">Young Thug - Floyd Mayweather</p>
+                        <h2>Check out similiar terms</h2>
+                        <a><p class="similar">Slide</p></a>
+                        <a><p class="similar">Bounce</p></a>
+                    </div>
+                </article>
+                
+                <article class="glossary-entry">
+                    <input id="dead-presidents" type="checkbox" class="content-dropdown glossary-entry">
+                    <label for="dead-presidents" class="toggle">Dead presidents</label>
+                    <div>
+                        <p class="type">Slang</p>
+                        <p class="origin">USA</p>
+                        <p class="year">1990's</p>
+                        <p class="abbrv">Money - USD</p>
+                        <p class="definition">Money, refering to president portraits of American dollar bills</p>
+                        <h2>Example lyric</h2>
+                        <p class="lyric">&ldquo; I'm out for dead presidents to represent me &rdquo;</p>
+                        <p class="italic song-details">Nas - The World is Yours</p>
+                        <h2>Check out similiar terms</h2>
+                        <a><p class="similar">Loot</p></a>
+                    </div>
+                </article>
+                
+                <article class="glossary-entry">
+                    <input id="dope" type="checkbox" class="content-dropdown glossary-entry">
+                    <label for="dope" class="toggle">Dope</label>
+                    <div>
+                        <p class="type">Slang</p>
+                        <p class="origin">USA</p>
+                        <p class="year">1990's</p>
+                        <p class="abbrv">Great</p>
+                        <p class="definition">Someone or something that is excellent, impressive or great</p>
+                        <h2>Example lyric</h2>
+                        <p class="lyric">&ldquo; Hurby the producer ain’t no joke, He always makes sure the beats are dope &rdquo;</p>
+                        <p class="italic song-details">Salt'n'Pepa - It's Alright</p>
+                        <h2>Check out similiar terms</h2>
+                        <a><p class="similar">Fire</p></a>
+                        <a><p class="similar">Fly</p></a>
+                    </div>
+                </article>
+
+            </section>
+
+        </main>
+
+    </body>
+
+     <footer>
+        <nav aria-label="footer">
+            <ul>
+                <a href="#"><li>Submit a lyric</li></a>
+                <a href="#"><li>Contact</li></a>
+                <a href="#"><li>Privacy policy</li></a>
+                <a href="#"><li>Accessibility Statement</li></a>
+            </ul>
+        <a><img src="images/logo-red.svg" alt="Decoded logo" width="145" height="56"></a>
+        </nav>
+        <p>&copy; Decoded 2025 All rights reserved</p>
+    </footer>
+
+</html>

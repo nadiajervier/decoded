@@ -86,12 +86,14 @@ table {
     --red-black: #FF4634;
     --slant-rhyme: #FFB92E;
     --internal-rhyme: #4CFF3E;
+    --oswald:  'Oswald', Sans Serif;
+    --poppins: 'Poppins', Avenir, Monserrat, Source Sans Pro, Sans Serif;
 }
 
 /* --- PAGE STYLING --- */
 
 body {
-    font-family: 'Poppins', Avenir, Monserrat, Source Sans Pro, Sans Serif;
+    font-family: var(--poppins);
     color: var(--charcoal);
     background-color: var(--white-smoke);
 }
@@ -116,7 +118,7 @@ label + div {
 /* --- TYPOGRAPHY --- */
 
 h1, h2, h3 {
-    font-family: 'Oswald', Sans Serif;
+    font-family: var(--oswald);
     text-transform: uppercase;
 }
 
@@ -167,7 +169,7 @@ header {
     justify-content: space-between;
 }
 
-header img {
+header img.logo {
     width: clamp(150px, 20vw, 250px);
     height: auto;
 }
@@ -209,12 +211,12 @@ nav[aria-label="main"] label.toggle {
 	line-height: 1;
     text-align: center;
     font-size: 0.9rem;
-    text-transform: uppercase;
 }
 
 nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible {
 	cursor: pointer;
 }
+
 
 /* visual focus */
 
@@ -236,63 +238,41 @@ input[type="checkbox"]#menu-toggle:focus-visible + label.toggle::before {
 
 /* show/hide menu */
 
-input[type="checkbox"]#menu-toggle + label.toggle + ul {
-	display: none;
+input[type="checkbox"]#menu-toggle + label.toggle + nav {
+    transform: translateX(100%);
+    transition: transform 0.8s ease-in-out;
 }
 
-input[type="checkbox"]#menu-toggle:checked + label.toggle + ul {
-	display: block;
+input[type="checkbox"]#menu-toggle:checked + label.toggle + nav {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--red-white);
+    top: 0;
+    left: 0;
+    transform: translateX(0);
 }
 
-/* 4 lines toggle visible */
-
-input#menu-toggle label {
-    width: 50px;
+nav svg {
+    margin-bottom: 0.2rem;
 }
 
-label.toggle [class*='line-'] {
-	background: var(--charcoal);
-	display: block;
-	border-radius: 2px;
-	height: 8px;
-	margin: 0 auto 3px;
-	transform: rotate(0deg);
-	transition: 0.4s ease all;
+/* menu design */
+
+#menu-toggle ul {
+    width: 100%;
+    height: 100%;
+    margin: auto;
 }
 
-label.toggle .line-one {
-	width: 22px;
-    text-align: left;
+/* svg colour and change on hover */
+
+rect {
+    fill: var(--charcoal);
 }
 
-label.toggle .line-two {
-	width: 34px;
-}
-
-label.toggle .line-three {
-	width: 34px;
-}
-
-label.toggle .line-four {
-	width: 38px;
-}
-
-label.toggle:hover [class*='line-'] {
-	background: var(--red-black);
-}
-
-input[type="checkbox"]#menu-toggle:checked + label.toggle .line-two {
-	transform: rotate(45deg);
-	transform-origin: 0 0;
-}
-
-input[type="checkbox"]#menu-toggle:checked + label.toggle .line-one, input[type="checkbox"]#menu-toggle:checked + label.toggle .line-four {
-	opacity: 0;
-}
-
-input[type="checkbox"]#menu-toggle:checked + label.toggle .line-three {
-	transform: rotate(-45deg);
-	transform-origin: 0 90%;
+label.toggle:hover svg rect {
+    fill: var(--red-white);
 }
 
 /* --- DETAILS ELEMENT & PAGE CONTENT --- */
@@ -315,17 +295,6 @@ input[type="checkbox"].content-dropdown {
     opacity: 0;
 	position: absolute;
 } 
-/*
-.content-dropdown + label.toggle::after{
-    content: "";
-    background: var(--charcoal);
-    color: var(--white-smoke);
-    padding: 1rem 2rem;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 1rem;
-    clip-path: polygon(20% 0, 100% 100%, 100% 0, 0 100%); 
-}   */
 
 input[type="checkbox"].content-dropdown + label {
     display: block;
@@ -336,19 +305,28 @@ input[type="checkbox"].content-dropdown + label {
     padding: 0.8rem 0;
 }
 
+input[type="checkbox"] + label p, .glossary-entry {
+    color: var(--white-smoke);
+    background-color: var(--charcoal);
+}
+
+input[type="checkbox"]:checked + label p {
+    background-color: var(--red-white);
+    box-shadow: -0.5rem 0.5rem var(--charcoal);
+}
+
+.glossary-entry:has(input[type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:hover){
+    background-color: var(--red-white);
+    transition: all 0.4s ease-in-out;
+    box-shadow: -0.8rem 0.8rem var(--charcoal);
+}
+
 input[type="checkbox"].content-dropdown + label p {
     display: inline;
     max-width: fit-content;
     margin-bottom: 0.8rem;
     padding: 0.8rem;
-    color: var(--white-smoke);
-    background-color: var(--charcoal);
     border-radius: 6px;
-}
-
-input[type="checkbox"].content-dropdown:checked + label p {
-    background-color: var(--red-white);
-    box-shadow: -0.5rem 0.5rem var(--charcoal);
 }
 
 input[type="checkbox"].content-dropdown + label.toggle + div {
@@ -365,8 +343,77 @@ label span {
     margin-left: 2rem;
 }
 
-label p:last-of-type {
+.subtitle + label p:last-of-type {
     margin-left: 1rem;
+}
+
+/* --- GLOSSARY ENTRIES --- */
+
+.glossary-filter {
+    display: flex;
+    text-align: right;
+    margin-top: 2rem;
+}
+
+.glossary-filter p {    
+    margin-right: 2rem;
+    font-weight: 600;
+}
+
+.glossary-entry {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-radius: 6px;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+
+.glossary-entry div {
+    margin-top: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.glossary-entry label {
+    font-family: var(--oswald);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.glossary-entry p {
+    margin-bottom: 0;
+}
+
+.type, .origin, .year {
+    display: inline;
+}
+
+.definition {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+.glossary-entry h2, .song-details {
+    font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+}
+
+.glossary-entry h2 {
+    font-family: var(--poppins);
+    text-transform: none;
+    margin: 1rem 0 0.5rem;
+}
+
+.type, .origin, .year{
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin-bottom: 0.5rem;
+}
+
+.similar {
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    margin-right: 0.2rem;
+    background-color: var(--white-smoke);
+    color: var(--charcoal);
+    border-radius: 6px;
 }
 
 /* --- FOOTER --- */
@@ -425,14 +472,13 @@ input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].
     box-shadow: -0.5rem 0.5rem var(--charcoal);
 }
 
+
 nav li:focus-visible {
     transition: all 0.4s ease-in-out;
     box-shadow: -0.5rem 0.5rem var(--charcoal);
     outline: none;
 }
 
-a:focus-visible, input[type="checkbox"].content-dropdown:focus-visible + label {
-}
 
 /* --- MEDIA QUERIES --- */
 
@@ -471,7 +517,7 @@ a:focus-visible, input[type="checkbox"].content-dropdown:focus-visible + label {
 
     /* NAVIGATION */
 
-    input[type="checkbox"]#menu-toggle + label.toggle + ul {
+    input[type="checkbox"]#menu-toggle + label.toggle + nav {
 	    display: block;
     }
 
