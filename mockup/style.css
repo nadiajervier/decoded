@@ -126,6 +126,7 @@ h1 {
     margin: 0 0 3rem;
     font-size: clamp(3.5rem, 13vw, 5rem);
     font-weight: 600;
+    text-align: center;
 }
 
 h2 {
@@ -239,18 +240,29 @@ input[type="checkbox"]#menu-toggle:focus-visible + label.toggle::before {
 /* show/hide menu */
 
 input[type="checkbox"]#menu-toggle + label.toggle + nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
     transform: translateX(100%);
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.6s ease-in-out;
 }
 
 input[type="checkbox"]#menu-toggle:checked + label.toggle + nav {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: var(--red-white);
-    top: 0;
-    left: 0;
     transform: translateX(0);
+}
+
+input[type="checkbox"]#menu-toggle:checked + label.toggle {
+    z-index: 2;
 }
 
 nav svg {
@@ -259,10 +271,11 @@ nav svg {
 
 /* menu design */
 
-#menu-toggle ul {
-    width: 100%;
-    height: 100%;
-    margin: auto;
+nav[aria-label="main"] ul li {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    padding: 0.5rem;
+    border-bottom: solid 2px var(--white-smoke);
 }
 
 /* svg colour and change on hover */
@@ -514,18 +527,29 @@ nav li:focus-visible {
 }
 
 @media (min-width: 1200px) {
-
+    
     /* NAVIGATION */
 
+    input[type="checkbox"]#menu-toggle + label.toggle {
+        display: none;
+    }
+    
     input[type="checkbox"]#menu-toggle + label.toggle + nav {
-	    display: block;
+        display: flex;
+        transform: none;
+        width: unset;
+        height: unset;
+        position: unset;
     }
 
     nav[aria-label="main"] ul li {
         display: inline;
+        font-size: 1rem;
         margin-left: 3rem;
         padding: 0.3rem 0.9rem;
         border-radius: 5px;
+        align-items: unset;
+        border: none;
     }
 
     nav[aria-label="main"] ul li:last-of-type {
@@ -538,7 +562,7 @@ nav li:focus-visible {
     }
 
     input[type="checkbox"]#menu-toggle + label.toggle {
-	display: none;
+	    display: none;
     }
 
     nav[aria-label="footer"] li{
