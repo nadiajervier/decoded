@@ -84,6 +84,7 @@ table {
     --white-smoke: #F5F5F5;
     --red-white: #C31313;
     --red-black: #FF4634;
+    --shadow: #3F3F3F;
     --slant-rhyme: #FFB92E;
     --internal-rhyme: #4CFF3E;
     --oswald:  'Oswald', Sans Serif;
@@ -119,24 +120,27 @@ label + div {
 
 h1, h2, h3 {
     font-family: var(--oswald);
-    text-transform: uppercase;
 }
 
 h1 {
-    margin: 0 0 3rem;
+    margin-bottom: clamp(4rem, 6vw, 6rem);
     font-size: clamp(3.5rem, 13vw, 5rem);
     font-weight: 600;
     text-align: center;
+    text-transform: uppercase;
 }
 
 h2 {
     font-size: clamp(2rem, 9vw, 3.5rem);
     margin-bottom: 2rem;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
 h3 {
     font-size: clamp(1.2rem, 4vw, 1.5rem);
     margin: 2rem 0 1rem;
+    text-transform: uppercase;
 }
 
 p {
@@ -153,9 +157,9 @@ li {
 }
 
 .lesson-intro {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-style: italic;
-    margin-bottom: 2rem;
+    margin: 3rem 0;
 }
 
 .italic {
@@ -217,7 +221,6 @@ nav[aria-label="main"] label.toggle {
 nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible {
 	cursor: pointer;
 }
-
 
 /* visual focus */
 
@@ -302,7 +305,7 @@ label.toggle:hover svg rect {
     background-color: var(--slant-rhyme)
 }
 
-/* --- PAGE CONTENT DROP DOWN ---*/
+/* --- PAGE CONTENT DROP DOWN --- */
 
 input[type="checkbox"].content-dropdown {
     opacity: 0;
@@ -314,32 +317,35 @@ input[type="checkbox"].content-dropdown + label {
 }
 
 input[type="checkbox"].content-dropdown + label {
-    margin-top: 0.8rem;
+    margin-top: 1.2rem;
     padding: 0.8rem 0;
 }
 
-input[type="checkbox"] + label p, .glossary-entry {
+input[type="checkbox"] + label p {
+    color: var(--white-smoke);
+    background-color: var(--red-white);
+}
+
+.glossary-entry {
     color: var(--white-smoke);
     background-color: var(--charcoal);
 }
 
-input[type="checkbox"]:checked + label p {
+.glossary-entry:has(input[type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
     background-color: var(--red-white);
-    box-shadow: -0.5rem 0.5rem var(--charcoal);
-}
-
-.glossary-entry:has(input[type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:hover){
-    background-color: var(--red-white);
-    transition: all 0.4s ease-in-out;
-    box-shadow: -0.8rem 0.8rem var(--charcoal);
 }
 
 input[type="checkbox"].content-dropdown + label p {
     display: inline;
     max-width: fit-content;
+    font-size: clamp(1.2rem, 2vw, 1.3rem);
     margin-bottom: 0.8rem;
     padding: 0.8rem;
     border-radius: 6px;
+}
+
+input[type="checkbox"].content-dropdown + label p, .glossary-entry {
+    box-shadow: -0.5rem 0.5rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.1rem 0.1rem var(--charcoal);
 }
 
 input[type="checkbox"].content-dropdown + label.toggle + div {
@@ -354,10 +360,6 @@ input[type="checkbox"].content-dropdown:checked + label.toggle + div {
 
 label span {
     margin-left: 2rem;
-}
-
-.subtitle + label p:last-of-type {
-    margin-left: 1rem;
 }
 
 /* --- GLOSSARY ENTRIES --- */
@@ -377,7 +379,7 @@ label span {
     width: 100%;
     margin-top: 1.5rem;
     border-radius: 6px;
-    padding-left: 0.8rem;
+    padding-left: 1rem;
     padding-right: 0.8rem;
 }
 
@@ -479,19 +481,14 @@ nav[aria-label="footer"] a:hover, nav[aria-label="footer"] a:focus-visible, nav[
     text-decoration: underline;
 }
 
-input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p {
-    background-color: var(--red-white);
-    transition: all 0.4s ease-in-out;
-    box-shadow: -0.5rem 0.5rem var(--charcoal);
+input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry input[type="checkbox"]:active, .glossary-entry input[type="checkbox"]:focus-visible {
+    box-shadow: none;
+    transition: none;
 }
 
-
-nav li:focus-visible {
-    transition: all 0.4s ease-in-out;
-    box-shadow: -0.5rem 0.5rem var(--charcoal);
-    outline: none;
+input[type="checkbox"].content-dropdown:active + label, input[type="checkbox"].content-dropdown:focus-visible + label, .glossary-entry input[type="checkbox"]:active, .glossary-entry input[type="checkbox"]:focus-visible {
+    transform: translate(-0.5rem, 0.5rem);
 }
-
 
 /* --- MEDIA QUERIES --- */
 
@@ -543,26 +540,17 @@ nav li:focus-visible {
     }
 
     nav[aria-label="main"] ul li {
-        display: inline;
+        display: inline-block;
         font-size: 1rem;
         margin-left: 3rem;
         padding: 0.3rem 0.9rem;
         border-radius: 5px;
         align-items: unset;
-        border: none;
-    }
-
-    nav[aria-label="main"] ul li:last-of-type {
         background-color: var(--red-white);
-    }
-
-    nav[aria-label="main"] ul li:last-of-type a {
         color: var(--white-smoke);
-        font-weight: 600;
-    }
-
-    input[type="checkbox"]#menu-toggle + label.toggle {
-	    display: none;
+        border: none;
+        box-shadow: -0.5rem 0.5rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.1rem 0.1rem var(--charcoal);
+        transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     nav[aria-label="footer"] li{
@@ -570,13 +558,10 @@ nav li:focus-visible {
     }
 
     /* link states */
-    nav[aria-label="main"] li:hover {
-        background-color: var(--red-white);
-        transition: all 0.4s ease-in-out;
-        box-shadow: -0.5rem 0.5rem var(--charcoal);
-    }
+    
 
-    nav[aria-label="main"] li:hover {
-        color: var(--white-smoke);
+    nav[aria-label="main"] ul li:active, nav[aria-label="main"] ul li:focus-visible {
+        box-shadow: none;
+        transform: translate(-0.5rem, 0.5rem);
     }
 }
