@@ -112,10 +112,6 @@ main, header {
     margin: 0 auto;
 }
 
-label + div {
-    margin: 2rem 0;
-}
-
 /* --- TYPOGRAPHY --- */
 
 h1, h2, h3 {
@@ -313,20 +309,10 @@ input[type="checkbox"].content-dropdown {
 } 
 
 input[type="checkbox"].content-dropdown + label {
-    display: block;
+    display: flex;
 }
 
-input[type="checkbox"].content-dropdown + label {
-    margin-top: 1.2rem;
-    padding: 0.8rem 0;
-}
-
-input[type="checkbox"] + label p {
-    color: var(--white-smoke);
-    background-color: var(--red-white);
-}
-
-.glossary-entry {
+input[type="checkbox"] + label p, .glossary-entry {
     color: var(--white-smoke);
     background-color: var(--charcoal);
 }
@@ -340,13 +326,10 @@ input[type="checkbox"].content-dropdown + label p {
     max-width: fit-content;
     font-size: clamp(1.2rem, 2vw, 1.3rem);
     margin-bottom: 0.8rem;
-    padding: 0.8rem;
+    line-height: 2.7em;
+    padding: 0 0.8rem;
     border-radius: 6px;
-}
-
-input[type="checkbox"].content-dropdown + label p, .glossary-entry {
-    box-shadow: -0.5rem 0.5rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.1rem 0.1rem var(--charcoal);
-    transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.4s ease-in-out;
 }
 
 input[type="checkbox"].content-dropdown + label.toggle + div {
@@ -359,8 +342,13 @@ input[type="checkbox"].content-dropdown:checked + label.toggle + div {
 
 /* dropdown arrow */
 
-label span {
-    margin-left: 2rem;
+label p span {
+    display: inline-block;
+    margin-left: 0.8rem;
+    padding-left: 1rem;
+    height: 100%;
+    border-left: 6px solid var(--white-smoke);
+    transition: all 0.4s ease-in-out;
 }
 
 /* --- GLOSSARY ENTRIES --- */
@@ -380,13 +368,13 @@ label span {
     width: 100%;
     margin-top: 1.5rem;
     border-radius: 6px;
-    padding-left: 1rem;
-    padding-right: 0.8rem;
+    padding: 1rem;
+    transition: all 0.4s ease-in-out;
 }
 
 .glossary-entry div {
     margin-top: 1rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .glossary-entry label {
@@ -482,14 +470,29 @@ nav[aria-label="footer"] a:hover, nav[aria-label="footer"] a:focus-visible, nav[
     text-decoration: underline;
 }
 
-input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry input[type="checkbox"]:active, .glossary-entry input[type="checkbox"]:focus-visible {
-    box-shadow: none;
-    transition: none;
+/*make main content toggle change on hover*/
+input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:checked + label p, .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has([type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
+    background-color: var(--red-white);
+    box-shadow: -0.5rem 0.5rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.1rem 0.1rem var(--charcoal);
 }
 
-input[type="checkbox"].content-dropdown:active + label, input[type="checkbox"].content-dropdown:focus-visible + label, .glossary-entry input[type="checkbox"]:active, .glossary-entry input[type="checkbox"]:focus-visible {
-    transform: translate(-0.5rem, 0.5rem);
+/*move chevron on hover*/
+input[type="checkbox"].content-dropdown:hover + label span, input[type="checkbox"].content-dropdown:active + label span, input[type="checkbox"].content-dropdown:focus-visible + label span, input[type="checkbox"].content-dropdown:checked + label span {
+    border-left: none;
+    padding-left: 0;
 }
+
+input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry:has(input[type="checkbox"]:active), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
+    box-shadow: none;
+    transform: translate(-0.5rem, 0.5rem);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* transform chevron on when label is checked */
+input[type="checkbox"].content-dropdown:checked + label.toggle span {
+  transform: rotate(90deg);
+}
+
 
 /* --- MEDIA QUERIES --- */
 
@@ -551,7 +554,7 @@ input[type="checkbox"].content-dropdown:active + label, input[type="checkbox"].c
         color: var(--white-smoke);
         border: none;
         box-shadow: -0.5rem 0.5rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.1rem 0.1rem var(--charcoal);
-        transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     nav[aria-label="footer"] li{
@@ -559,7 +562,6 @@ input[type="checkbox"].content-dropdown:active + label, input[type="checkbox"].c
     }
 
     /* link states */
-    
 
     nav[aria-label="main"] ul li:active, nav[aria-label="main"] ul li:focus-visible {
         box-shadow: none;
