@@ -332,7 +332,7 @@ input[type="checkbox"] + label p, .glossary-entry {
 }
 
 .glossary-entry:has(input[type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
-    background-color: var(--red);
+    background-color: var(--red-light-dark);
 }
 
 input[type="checkbox"].content-dropdown + label p {
@@ -503,19 +503,24 @@ nav[aria-label="footer"] a:hover, nav[aria-label="footer"] a:focus-visible, nav[
     text-decoration: underline;
 }
 
-/*make main content toggle change on hover*/
-input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:checked + label p, .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has([type="checkbox"]:checked), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
+/* make main content toggle change on hover */
+input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:checked + label p, .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has(input[type="checkbox"]:checked) {
     background-color: var(--red-light-dark);
     box-shadow: -0.5rem 0.5rem var(--toggle-button-hover), -0.4rem 0.4rem var(--toggle-button-hover), -0.3rem 0.3rem var(--toggle-button-hover), -0.2rem 0.2rem var(--toggle-button-hover), -0.1rem 0.1rem var(--toggle-button-hover);
 }
 
-/*move chevron on hover*/
+/* dark mode button box shadows */
+#theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:hover) .glossary-entry {
+    box-shadow: -0.1rem 0.1rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.5rem 0.5rem var(--charcoal), -0.6rem 0.6rem 0.3rem var(--white-smoke);
+}
+
+/* move chevron on hover */
 input[type="checkbox"].content-dropdown:hover + label span, input[type="checkbox"].content-dropdown:active + label span, input[type="checkbox"].content-dropdown:focus-visible + label span, input[type="checkbox"].content-dropdown:checked + label span {
     border-left: none;
     padding-left: 0;
 }
 
-input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry:has(input[type="checkbox"]:active), .glossary-entry:has(input[type="checkbox"]:focus-visible) {
+input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry:has(input[type="checkbox"]:active), .glossary-entry:has(input[type="checkbox"]:focus-visible), #theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:active) .glossary-entry, #theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:focus-visible) .glossary-entry {
     box-shadow: none;
     transform: translate(-0.5rem, 0.5rem);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
