@@ -96,7 +96,7 @@ table {
     --black-white: light-dark(#252525, #F5F5F5);
     --red-light-dark: light-dark(#C31313, #FF4634);
     --red-dark-light: light-dark(#FF4634, #C31313);
-    --toggle-button-hover: light-dark(#252525, #F5F5F5);
+    --toggle-button-hover: light-dark(#252525, #801919);
 }
 
 /* --- PAGE STYLING --- */
@@ -504,14 +504,10 @@ nav[aria-label="footer"] a:hover, nav[aria-label="footer"] a:focus-visible, nav[
 }
 
 /* make main content toggle change on hover */
-input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:checked + label p, .glossary-entry:has(input[type="checkbox"]:hover), .glossary-entry:has(input[type="checkbox"]:checked) {
+input[type="checkbox"].content-dropdown:hover + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:checked + label p {
+    color: var(--white-smoke);
     background-color: var(--red-light-dark);
     box-shadow: -0.5rem 0.5rem var(--toggle-button-hover), -0.4rem 0.4rem var(--toggle-button-hover), -0.3rem 0.3rem var(--toggle-button-hover), -0.2rem 0.2rem var(--toggle-button-hover), -0.1rem 0.1rem var(--toggle-button-hover);
-}
-
-/* dark mode button box shadows */
-#theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:hover) .glossary-entry {
-    box-shadow: -0.1rem 0.1rem var(--charcoal), -0.2rem 0.2rem var(--charcoal), -0.3rem 0.3rem var(--charcoal), -0.4rem 0.4rem var(--charcoal), -0.5rem 0.5rem var(--charcoal), -0.6rem 0.6rem 0.3rem var(--white-smoke);
 }
 
 /* move chevron on hover */
@@ -520,7 +516,7 @@ input[type="checkbox"].content-dropdown:hover + label span, input[type="checkbox
     padding-left: 0;
 }
 
-input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p, .glossary-entry:has(input[type="checkbox"]:active), .glossary-entry:has(input[type="checkbox"]:focus-visible), #theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:active) .glossary-entry, #theme-switch:has(#dark:checked) ~ .glossary-entries:has(input[type="checkbox"]:focus-visible) .glossary-entry {
+input[type="checkbox"].content-dropdown:active + label p, input[type="checkbox"].content-dropdown:focus-visible + label p {
     box-shadow: none;
     transform: translate(-0.5rem, 0.5rem);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -590,7 +586,7 @@ input[type="checkbox"].content-dropdown:checked + label.toggle span {
         background-color: var(--red-white);
         color: var(--white-smoke);
         border: none;
-        box-shadow: -0.5rem 0.5rem var(--black-white), -0.4rem 0.4rem var(--black-white), -0.3rem 0.3rem var(--black-white), -0.2rem 0.2rem var(--black-white), -0.1rem 0.1rem var(--black-white);
+        box-shadow: -0.5rem 0.5rem var(--toggle-button-hover), -0.4rem 0.4rem var(--toggle-button-hover), -0.3rem 0.3rem var(--toggle-button-hover), -0.2rem 0.2rem var(--toggle-button-hover), -0.1rem 0.1rem var(--toggle-button-hover);
         transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
@@ -610,8 +606,32 @@ input[type="checkbox"].content-dropdown:checked + label.toggle span {
 
 :root:has(input[type="radio"]#light:checked){
     color-scheme: light;
-} 
+}
 
 :root:has(input[type="radio"]#dark:checked){
     color-scheme: dark;
-}   
+}
+
+/* switch */
+
+fieldset {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    max-width: fit-content;
+    background-color: var(--black-white);
+    border-radius: 6px;
+}
+
+fieldset input[type="radio"] {
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    outline-offset: 3px;
+    outline: 3px solid var(--white-black);
+    border-radius: 10%;
+}
+
+fieldset input[type="radio"]:checked {
+    background-color: var(--white-black);
+}
