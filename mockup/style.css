@@ -39,10 +39,10 @@ html {
 body {
 	line-height: 1;
 }
-/*
+
 ol, ul {
 	list-style: none;
-} */
+}
 
 summary::marker {
     content: "";
@@ -97,6 +97,7 @@ table {
     --red-light-dark: light-dark(#C31313, #FF4634);
     --red-dark-light: light-dark(#FF4634, #C31313);
     --toggle-button-hover: light-dark(#252525, #801919);
+    --header-background: light-dark(rgba(245, 245, 245, 0.7), rgba(37, 37, 37, 0.7))
 }
 
 /* --- PAGE STYLING --- */
@@ -112,8 +113,16 @@ main {
 }
 
 header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    padding: 2rem 1rem 1rem;
+    justify-content: space-between;
+    background-color: var(--header-background);
+    backdrop-filter: blur(5px);
+    transition: all 0.5s ease-in-out;
     align-items: center;
-    padding: 2rem 0.5rem 4rem;
+    z-index: 1;
 }
 
 main, header {
@@ -178,18 +187,21 @@ li {
 
 /* --- HEADER --- */
 
-header {
-    display: flex;
-    max-width: 100%;
-    justify-content: space-between;
-}
-
 header img.logo {
     width: clamp(150px, 20vw, 250px);
     height: auto;
 }
 
 /* --- NAVIGATION --- */
+
+header label { 
+    background-color: var(--red-light-dark);
+    padding: 0.5rem;
+    border-radius: 4px;
+    /* label sticks to top of page, positioned relative to header*/
+    position: relative;
+    height: fit-content;
+}
 
 nav[aria-label="lesson"] {
     display: flex;
@@ -232,6 +244,19 @@ nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible 
 	cursor: pointer;
 }
 
+/* blur background when nav is open */
+body:has(#menu-toggle:checked) main,
+body:has(#menu-toggle:checked) footer {
+  filter: blur(3px);
+  transition: filter 0.3s ease-in-out;
+  pointer-events: none; /* stops clicks behind the nav */
+}
+
+body:has(#menu-toggle:checked) header {
+  background-color: transparent;
+  backdrop-filter: unset;
+}
+
 /* visual focus */
 
 nav .toggle::before {
@@ -253,43 +278,37 @@ input[type="checkbox"]#menu-toggle:focus-visible + label.toggle::before {
 /* show/hide menu */
 
 input[type="checkbox"]#menu-toggle + label.toggle + nav {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    transform: translateX(100%);
-    transition: transform 0.6s ease-in-out;
+    display: none;
 }
 
 input[type="checkbox"]#menu-toggle:checked + label.toggle + nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--red-white);
-    transform: translateX(0);
+    display: block;
+    background-color: var(--red-light-dark);
+    padding: 1rem;
+    border-radius: 10px;
+    position: fixed;
+    top: 130px;
+    right: 1rem;
 }
 
-input[type="checkbox"]#menu-toggle:checked + label.toggle {
-    z-index: 2;
+header svg {
+    width: 2em;
+    height: auto;
+    display: block;
 }
 
-nav svg {
-    margin-bottom: 0.2rem;
+/* prevent scroll when menu is open */
+body:has(header #menu-toggle:checked) {
+    overflow: hidden;
 }
+
 
 /* menu design */
 
 nav[aria-label="main"] ul li {
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 600;
-    padding: 0.5rem;
-    border-bottom: solid 2px var(--white-smoke);
+    text-align: right;
 }
+
 
 /* svg colour and change on hover */
 
@@ -536,6 +555,10 @@ input[type="checkbox"].content-dropdown:checked + label.toggle span {
     header, footer {
         padding-left: 4rem;
         padding-right: 4rem;
+    }
+
+    input[type="checkbox"]#menu-toggle:checked + label.toggle + nav {
+        right: 4rem;
     }
 
     nav[aria-label="footer"] {
