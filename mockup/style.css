@@ -97,7 +97,9 @@ table {
     --red-light-dark: light-dark(#C31313, #FF4634);
     --red-dark-light: light-dark(#FF4634, #C31313);
     --toggle-button-hover: light-dark(#252525, #801919);
-    --header-background: light-dark(rgba(245, 245, 245, 0.7), rgba(37, 37, 37, 0.7))
+    --nav-menu-border: light-dark(#252525, #FF4634);
+    --header-background: light-dark(rgba(245, 245, 245, 0.7), rgba(37, 37, 37, 0.7));
+    --header-menu-background: light-dark(rgba(245, 245, 245, 0.8), rgba(37, 37, 37, 0.8));
 }
 
 /* --- PAGE STYLING --- */
@@ -116,10 +118,8 @@ header {
     display: flex;
     position: sticky;
     top: 0;
-    padding: 2rem 1rem 1rem;
+    padding: 1rem;
     justify-content: space-between;
-    background-color: var(--header-background);
-    backdrop-filter: blur(5px);
     transition: all 0.5s ease-in-out;
     align-items: center;
     z-index: 1;
@@ -190,6 +190,10 @@ li {
 header img.logo {
     width: clamp(150px, 20vw, 250px);
     height: auto;
+    background-color: var(--header-background);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem;
+    border-radius: 3px;
 }
 
 /* --- NAVIGATION --- */
@@ -198,8 +202,6 @@ header label {
     background-color: var(--red-light-dark);
     padding: 0.5rem;
     border-radius: 4px;
-    /* label sticks to top of page, positioned relative to header*/
-    position: relative;
     height: fit-content;
 }
 
@@ -244,19 +246,6 @@ nav label.toggle:hover, nav label.toggle:active, nav label.toggle:focus-visible 
 	cursor: pointer;
 }
 
-/* blur background when nav is open */
-body:has(#menu-toggle:checked) main,
-body:has(#menu-toggle:checked) footer {
-  filter: blur(3px);
-  transition: filter 0.3s ease-in-out;
-  pointer-events: none; /* stops clicks behind the nav */
-}
-
-body:has(#menu-toggle:checked) header {
-  background-color: transparent;
-  backdrop-filter: unset;
-}
-
 /* visual focus */
 
 nav .toggle::before {
@@ -283,11 +272,12 @@ input[type="checkbox"]#menu-toggle + label.toggle + nav {
 
 input[type="checkbox"]#menu-toggle:checked + label.toggle + nav {
     display: block;
-    background-color: var(--red-light-dark);
-    padding: 1rem;
+    background-color: var(--header-menu-background);
+    backdrop-filter: blur(5px);
+    padding: 1rem 0rem 1rem 2rem;
     border-radius: 10px;
     position: fixed;
-    top: 130px;
+    top: 100px;
     right: 1rem;
 }
 
@@ -297,27 +287,42 @@ header svg {
     display: block;
 }
 
-/* prevent scroll when menu is open */
-body:has(header #menu-toggle:checked) {
-    overflow: hidden;
-}
-
-
 /* menu design */
+nav[aria-label="main"] ul {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
 
 nav[aria-label="main"] ul li {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.9rem;
+    width: fit-content;
+    border-radius: 5px;
     text-align: right;
+    background-color: var(--red-light-dark);
+    color: var(--white-black);
+    border: none;
+    box-shadow: -0.5rem 0.5rem var(--toggle-button-hover), -0.4rem 0.4rem var(--toggle-button-hover), -0.3rem 0.3rem var(--toggle-button-hover), -0.2rem 0.2rem var(--toggle-button-hover), -0.1rem 0.1rem var(--toggle-button-hover);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* link states */
+
+nav[aria-label="main"] ul li:active, nav[aria-label="main"] ul li:focus-visible {
+    box-shadow: none;
+    transform: translate(-0.5rem, 0.5rem);
+}
 
 /* svg colour and change on hover */
 
 rect {
-    fill: var(--charcoal);
+    fill: var(--white-black);
 }
 
 label.toggle:hover svg rect {
-    fill: var(--red-white);
+    fill: var(--red-light-dark);
 }
 
 /* --- DETAILS ELEMENT & PAGE CONTENT --- */
@@ -583,48 +588,6 @@ input[type="checkbox"].content-dropdown:checked + label.toggle span {
 
 }
 
-@media (min-width: 1200px) {
-    
-    /* NAVIGATION */
-
-    input[type="checkbox"]#menu-toggle + label.toggle {
-        display: none;
-    }
-    
-    input[type="checkbox"]#menu-toggle + label.toggle + nav {
-        display: flex;
-        transform: none;
-        width: unset;
-        height: unset;
-        position: unset;
-    }
-
-    nav[aria-label="main"] ul li {
-        display: inline-block;
-        font-size: 1rem;
-        margin-left: 3rem;
-        padding: 0.3rem 0.9rem;
-        border-radius: 5px;
-        align-items: unset;
-        background-color: var(--red-white);
-        color: var(--white-smoke);
-        border: none;
-        box-shadow: -0.5rem 0.5rem var(--toggle-button-hover), -0.4rem 0.4rem var(--toggle-button-hover), -0.3rem 0.3rem var(--toggle-button-hover), -0.2rem 0.2rem var(--toggle-button-hover), -0.1rem 0.1rem var(--toggle-button-hover);
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    nav[aria-label="footer"] li{
-        text-align: left;
-    }
-
-    /* link states */
-
-    nav[aria-label="main"] ul li:active, nav[aria-label="main"] ul li:focus-visible {
-        box-shadow: none;
-        transform: translate(-0.5rem, 0.5rem);
-    }
-}
-
 /* --- LIGHT / DARK MODES ---*/
 
 :root:has(input[type="radio"]#light:checked){
@@ -640,18 +603,19 @@ input[type="checkbox"].content-dropdown:checked + label.toggle span {
 fieldset {
     display: flex;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.5rem;
     max-width: fit-content;
     background-color: var(--black-white);
     border-radius: 6px;
+    color: var(--white-black);
 }
 
 fieldset input[type="radio"] {
     appearance: none;
-    width: 1.5rem;
-    height: 1.5rem;
-    outline-offset: 3px;
-    outline: 3px solid var(--white-black);
+    width: 1rem;
+    height: 1rem;
+    outline-offset: 2px;
+    outline: 2px solid var(--white-black);
     border-radius: 10%;
 }
 
